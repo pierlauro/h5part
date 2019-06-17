@@ -667,7 +667,7 @@ test_open_objects(H5PartFile *file, int max_objects)
                 H5O_info_t info;
 		int i;
 		for (i=0; i<nopen; i++) {
-			H5Oget_info(list[i], &info);
+			H5Oget_info(list[i], &info, 0);
                         switch (info.type) {
                         case H5O_TYPE_GROUP: 
 			TestErrPrintf("obj%d has type GROUP\n", i);
