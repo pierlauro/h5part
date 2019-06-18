@@ -20,11 +20,13 @@ __attribute__ ((format (printf, 3, 4)))
  ;
 
 #ifndef PARALLEL_IO
-typedef unsigned long		MPI_Comm;
+//typedef unsigned long		MPI_Comm;
 #endif
 
 #define H5PART_STEPNAME_LEN	64
 #define H5PART_DATANAME_LEN	64
+
+#include <mpi.h>
 
 struct H5BlockFile;
 
