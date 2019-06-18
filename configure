@@ -18350,9 +18350,9 @@ echo "$as_me: error: Cannot find an HDF5 library!" >&2;}
 	exit 1
 fi
 
-INCLUDES="$INCLUDES -I$HDF5ROOT/include"
+INCLUDES="$INCLUDES -I$HDF5ROOT/include -I/usr/include/pyvol -I/usr/include/mpich -I/usr/include/python3.6"
 LDFLAGS="$LDFLAGS -L$HDF5ROOT/lib"
-LIBS="$LIBS -lhdf5"
+LIBS="$LIBS -lhdf5 -lpyvol -lpython3.6m"
 
 { echo "$as_me:$LINENO: checking if we need to link to libsz " >&5
 echo $ECHO_N "checking if we need to link to libsz ... $ECHO_C" >&6; }
