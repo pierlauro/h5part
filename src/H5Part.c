@@ -80,6 +80,7 @@ For further information contact: <a href="mailto:h5part@lists.psi.ch">h5part</a>
 #include <errno.h>
 #include <fcntl.h>
 #include <hdf5.h>
+#include <VOL.h>
 
 #ifndef WIN32
 #include <unistd.h>
@@ -310,6 +311,10 @@ _H5Part_open_file (
 		f->file = H5Fopen(filename, H5F_ACC_RDONLY, f->access_prop);
 	}
 	else if ( flags & H5PART_WRITE ){
+		hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+		hid_t vol_id = H5VLregister_connector(&H5VL_python_cls_g, H5P_DEFAULT);
+		H5Pset_vol(f->access_prop, vol_id, &fapl);
+
 		f->file = H5Fcreate (filename, H5F_ACC_TRUNC, f->fcreate_prop,
 				f->access_prop);
 		f->empty = 1;
