@@ -312,7 +312,8 @@ _H5Part_open_file (
 	}
 	else if ( flags & H5PART_WRITE ){
 		py_initialize();
-		initialize_vol_class("python_vol", "VOL");
+		//initialize_vol_class("python_vol", "VOL");
+		initialize_vol_class("swift_vol", "SwiftVOL");
 		hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
 		hid_t vol_id = H5VLregister_connector(&H5VL_python_cls_g, H5P_DEFAULT);
 		H5Pset_vol(f->access_prop, vol_id, &fapl);
@@ -3166,12 +3167,12 @@ _read_data (
 
 	/* default spaces, if not using a view selection */
 	memspace_id = H5S_ALL;
-	space_id = H5Dget_space ( dataset_id );
-	if ( space_id < 0 ) return HANDLE_H5D_GET_SPACE_ERR;
+	//space_id = H5Dget_space ( dataset_id );
+	//if ( space_id < 0 ) return HANDLE_H5D_GET_SPACE_ERR;
 
 	/* get the number of elements on disk for the datset */
-	ndisk = H5Sget_simple_extent_npoints ( space_id );
-	if ( ndisk < 0 ) return HANDLE_H5S_GET_SIMPLE_EXTENT_NPOINTS_ERR;
+	//ndisk = H5Sget_simple_extent_npoints ( space_id );
+	//if ( ndisk < 0 ) return HANDLE_H5S_GET_SIMPLE_EXTENT_NPOINTS_ERR;
 
 	if ( f->diskshape != H5S_ALL )
 	{
