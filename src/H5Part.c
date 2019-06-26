@@ -3183,8 +3183,8 @@ _read_data (
 		 * exceed the size of the dataset */
 		if ( nread <= ndisk ) {
 			/* we no longer need the dataset space... */
-			herr = H5Sclose ( space_id );
-			if ( herr < 0 ) HANDLE_H5S_CLOSE_ERR;
+			//herr = H5Sclose ( space_id );
+			//if ( herr < 0 ) HANDLE_H5S_CLOSE_ERR;
 			/* ...because it's safe to use the view selection */
 			space_id = f->diskshape;
 		} else {
@@ -3246,8 +3246,8 @@ _read_data (
 #endif
 
 	if ( space_id != f->diskshape ) {
-		herr = H5Sclose ( space_id );
-		if ( herr < 0 ) return HANDLE_H5S_CLOSE_ERR;
+		//herr = H5Sclose ( space_id );
+		//if ( herr < 0 ) return HANDLE_H5S_CLOSE_ERR;
 	}
 
 	herr = H5Dclose ( dataset_id );
