@@ -312,8 +312,14 @@ _H5Part_open_file (
 	}
 	else if ( flags & H5PART_WRITE ){
 		py_initialize();
-		//initialize_vol_class("python_vol", "VOL");
-		initialize_vol_class("swift_vol", "SwiftVOL");
+		const char* VOL_PACKAGE = getenv("HDF5_VOL_PACKAGE");
+		const char* VOL_CLASS = getenv("HDF5_VOL_CLASS");
+		if(VOL_PACKAGE != NULL || VOL_CLASS != NULL){
+			initialize_vol_class(VOL_PACKAGE, VOL_CLASS);
+		} else{
+			printf("Please, initialize env vars HDF5_VOL_PACKAGE and HDF5_VOL_CLASS\n");
+			exit(-1);
+		}
 		hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
 		hid_t vol_id = H5VLregister_connector(&H5VL_python_cls_g, H5P_DEFAULT);
 		H5Pset_vol(f->access_prop, vol_id, &fapl);
